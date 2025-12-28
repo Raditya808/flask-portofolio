@@ -1,7 +1,16 @@
 from flask import Flask,session,url_for
+from fitur_project import second2 # mengimpor fitur_project file dalam second2
+# fitur_project adalah nama file 
+# second2 adalah variabel di dalam fitur-project yang dijadikan blueprint dan route
+
+from contactus import second3 # mengimpor contactus file didalam second3 
+# contactus adalah nama file 
+# second3 adalah variabel yang didalam contactus yang dijadikan blueprint dan route 
+
 
 app = Flask(__name__)
-
+app.register_blueprint(second2) # membuat syntax blueprint ke route second2 di file fitur-project.py
+app.register_blueprint(second3)
 
 @app.route("/")
 def index():
@@ -16,7 +25,12 @@ def index():
     
     <!-- rute ke function project-->
     <button>
-        <a href="{url_for('project_route')}">View Projects</a>
+        <a href="{url_for('second.prjct')}">View Projects</a>
+  <!-- mengirim data ke Blueprint second di file fitur-project.py dan mengirim data prjct di variabel second2 di dalam Blueprint--> 
+    </button>
+    
+    <button>
+    <a href="{url_for('kontak.hubungi')}">Contact Us</a>
     </button>
 
     <h1>Flask Portofolio</h1>
@@ -37,6 +51,13 @@ def index():
     <div class="scroll-container">
       <table style="text-align: center;">
         <tr>
+         <td  style="padding: 20px;">
+            <div class="textcard"  style="padding: 20px;">
+              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
+              <h4>Html</h4>
+            </div>
+          </td>
+        
           <td  style="padding: 20px;">
             <div class="textcard"  style="padding: 20px;">
               <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
@@ -91,22 +112,7 @@ def index():
     </html>
     """
     
-    
-@app.route("/prjct")
-def project_route():
-    return f"""
 
-<h1> Belum selesai nigga</h1>
-<style>
-h1{{ 
-font-size:70px;
-}}
-</style>
-<img src="{url_for('static',filename='lmao.png')}" width="700px"><br>
-<button>
-<a href ="{url_for('index')}">Balik gih</a>
-</button>
-"""
 
 if __name__ == "__main__": 
     app.run(debug=True)
