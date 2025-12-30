@@ -57,7 +57,7 @@ h1 {{
 /* ================= NAV BUTTON (SYNCED) ================= */
 button {{
   position: absolute;
-  top: 30px;
+  top: 32px;
   z-index: 1000;
   background: none;
   border: none;
@@ -89,7 +89,7 @@ button a {{
   text-decoration: none;
   border-radius: 6px;
   font-weight: 500;
-  font-size: 0.85em;
+  font-size: 0.75em;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid #e0e0e0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -305,7 +305,6 @@ td:nth-child(3) .textcard {{ animation-delay: 0.4s; }}
 </head>
 <body>
   <!-- Navigation Header -->
-  <h1>Let's Connect</h1>
   <button><a href="/">Home</a></button>
   <!-- ke rute main.py -->
   

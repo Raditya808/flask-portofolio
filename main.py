@@ -18,7 +18,7 @@ def index():
     <link rel="stylesheet" href="{url_for('static', filename='index-rute.css')}">
     </head>
     <body>
-    
+    <br>
     <!-- Navigation Buttons -->
     <button>
         <a href="{url_for('second.prjct')}">View Projects</a>
@@ -27,8 +27,7 @@ def index():
     <button>
         <a href="{url_for('kontak.hubungi')}">Lets Connect</a>
     </button>
-
-    <h1>Flask Portofolio</h1>
+    
     
     <!-- Header Section -->
     <section class="header-container">

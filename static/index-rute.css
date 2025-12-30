@@ -62,7 +62,7 @@ button a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 22px;
+  padding: 10px 19px;
   background: #f5f5f5;
   color: #333;
   text-decoration: none;
@@ -639,4 +639,3 @@ td:nth-child(7) .textcard { animation-delay: 0.7s; }
     padding-top: 10px;
   }
 }
-
