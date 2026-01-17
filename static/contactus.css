@@ -1,0 +1,234 @@
+/* 
+   Contact Page CSS v3 (Final Fix)
+   Theme: "Silent Luxury"
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-core: #050505;
+  --bg-card: #141414;
+  --text-main: #e5e5e5;
+  --text-sub: #888888;
+  --border-dim: #333333;
+  --highlight: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-core);
+  color: var(--text-main);
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s ease;
+}
+
+/* === Navigation === */
+.nav-container {
+  padding: 30px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Style the <a> directly (No button wrapper) */
+.nav-container a {
+  display: inline-block;
+  padding: 14px 40px;
+  border: 1px solid var(--border-dim);
+  border-radius: 4px;
+  /* Square/Box style like index */
+  color: var(--text-main);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.5s ease;
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.nav-container a:hover {
+  background: var(--text-main);
+  color: var(--bg-core) !important;
+  border-color: var(--text-main);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* === Header === */
+.header-container {
+  margin: 40px 0;
+  opacity: 0;
+  text-align: center;
+  animation: fadeReveal 2s ease-out forwards 0.2s;
+}
+
+.content-text h2 {
+  font-size: 3rem;
+  font-weight: 200;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: var(--text-main);
+}
+
+/* === Cards Section === */
+.project-container {
+  margin: 40px auto;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+}
+
+.scroll-container {
+  overflow-x: auto;
+  width: 100%;
+  scrollbar-width: none;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-container table {
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 30px;
+}
+
+/* Card Styling */
+.textcard {
+  background: var(--bg-card);
+  width: 180px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-dim);
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.textcard img {
+  margin-bottom: 20px;
+  filter: invert(1);
+  opacity: 0.7;
+  transition: all 0.4s ease;
+}
+
+.textcard h4 {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text-sub);
+  letter-spacing: 1px;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.textcard:hover {
+  transform: translateY(-10px);
+  border-color: var(--highlight);
+  background: #1a1a1a;
+  box-shadow: 0 10px 40px -10px rgba(255, 255, 255, 0.05);
+}
+
+.textcard:hover img {
+  opacity: 1;
+  transform: scale(1.1);
+  filter: invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.textcard:hover h4 {
+  color: var(--text-main);
+}
+
+/* Stagger Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-container td:nth-child(1) .textcard {
+  animation: fadeInUp 0.8s ease-out forwards 0.4s;
+}
+
+.scroll-container td:nth-child(2) .textcard {
+  animation: fadeInUp 0.8s ease-out forwards 0.7s;
+}
+
+.scroll-container td:nth-child(3) .textcard {
+  animation: fadeInUp 0.8s ease-out forwards 1.0s;
+}
+
+/* === Footer === */
+#footer {
+  padding: 50px 0;
+  border-top: 1px solid var(--border-dim);
+  margin-top: auto;
+  background: var(--bg-core);
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social {
+  display: flex;
+  gap: 30px;
+  margin: 25px 0;
+  justify-content: center;
+}
+
+.social img {
+  width: 24px;
+  opacity: 0.5;
+  transition: 0.3s;
+  filter: invert(1);
+}
+
+.social a:hover img {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+#footer p {
+  font-size: 0.8rem;
+  color: #444;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@keyframes fadeReveal {
+  to {
+    opacity: 1;
+  }
+}

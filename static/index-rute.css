@@ -1,0 +1,378 @@
+/* 
+   Elegant Portfolio v5 - Final w/ Custom Scrollbar
+   Theme: "Silent Luxury"
+   Animation: Very Slow Staggered Entrance
+   Images: Full Color
+   Features: Visible Custom Scrollbar
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Palette */
+  --bg-core: #050505;
+  --bg-card: #141414;
+  --text-main: #e5e5e5;
+  --text-sub: #888888;
+  --border-dim: #333333;
+  --highlight: #ffffff;
+  --scrollbar-track: #0a0a0a;
+  --scrollbar-thumb: #333333;
+
+  /* Animation Configuration */
+  --anim-duration: 2.0s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-core);
+  color: var(--text-main);
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s ease;
+}
+
+/* === Layout === */
+.content-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 20px 60px;
+  /* Reduced top padding */
+  text-align: center;
+}
+
+/* === Header === */
+.header-container {
+  margin: 40px 0 60px;
+  /* Removed blanket animation to animate children individually */
+}
+
+.header-container h2:first-child {
+  font-size: 2.8rem;
+  font-weight: 300;
+  letter-spacing: -1px;
+  margin-bottom: 25px;
+  opacity: 0;
+  animation: slowEntrance 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.5s;
+}
+
+/* === Profile Image === */
+.profile-container {
+  margin: 20px auto 30px;
+  perspective: 1000px;
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  /* Animate profile pic after the title */
+  animation: slowEntrance 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.8s;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.1);
+  border-color: var(--text-main);
+}
+
+.content-text h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--text-sub);
+  margin-bottom: 20px;
+  font-weight: 400;
+  opacity: 0;
+  animation: slowEntrance 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 1.0s;
+}
+
+.content-text p {
+  color: var(--text-sub);
+  font-weight: 300;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
+  opacity: 0;
+  animation: slowEntrance 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 1.5s;
+}
+
+/* === Buttons === */
+.content-wrapper>button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 5px 15px;
+  /* Reduced vertical margin */
+  cursor: pointer;
+  opacity: 0;
+  /* Buttons animate first or together */
+  animation: slowEntrance 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.2s;
+}
+
+/* Add stagger for second button if possible via nth-child, 
+   but since they are separate <button> tags, we can use general sibling selector or just let them appear together 
+   or use nth-of-type on the wrapper context if they are direct children.
+*/
+.content-wrapper>button:nth-of-type(2) {
+  animation-delay: 0.4s;
+}
+
+button a {
+  display: inline-block;
+  padding: 14px 40px;
+  border: 1px solid var(--border-dim);
+  color: var(--text-main);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.5s ease;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+button a:hover {
+  background: var(--text-main);
+  color: var(--bg-core) !important;
+  border-color: var(--text-main);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+  letter-spacing: 3px;
+}
+
+/* === Skills Section === */
+.project-container {
+  margin-top: 60px;
+  min-height: 350px;
+  /* Space for scrollbar */
+}
+
+.project-container h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+/* === Scroll Container with Custom Scrollbar === */
+.scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  /* Enable horizontal scrolling */
+  padding: 20px 0 30px 0;
+  /* Extra bottom padding for scrollbar space */
+
+  /* Firefox Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Chrome/Safari/Edge Scrollbar */
+.scroll-container::-webkit-scrollbar {
+  height: 8px;
+  /* Tinggi scrollbar horizontal */
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 10px;
+  margin: 0 20px;
+  /* Jarak dari pinggir */
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 10px;
+  border: 1px solid var(--bg-core);
+  /* Separator */
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-sub);
+  /* Terang dikit pas hover */
+}
+
+.scroll-container table {
+  margin: 0 auto;
+  /* Force min-width agar scrollbar muncul jika layar kecil */
+  min-width: max-content;
+  border-spacing: 15px 0;
+  /* Jarak antar kolom tabel */
+  border-collapse: separate;
+}
+
+/* Card Styling */
+.textcard {
+  background: var(--bg-card);
+  width: 130px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-dim);
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.textcard img {
+  width: 45px;
+  height: 45px;
+  margin-bottom: 20px;
+  opacity: 0.9;
+  transition: transform 0.5s ease;
+}
+
+.textcard h4 {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-sub);
+  letter-spacing: 1px;
+}
+
+/* Hover Effects */
+.textcard:hover {
+  transform: translateY(-10px) !important;
+  border-color: var(--highlight);
+  background: #1a1a1a;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.textcard:hover img {
+  transform: scale(1.15) rotate(5deg);
+  opacity: 1;
+}
+
+.textcard:hover h4 {
+  color: var(--text-main);
+}
+
+/* === Very Slow Staggered Animation === */
+@keyframes slowEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    filter: blur(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.scroll-container td:nth-child(1) .textcard {
+  animation: slowEntrance var(--anim-duration) cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.2s;
+}
+
+.scroll-container td:nth-child(2) .textcard {
+  animation: slowEntrance var(--anim-duration) cubic-bezier(0.2, 0.8, 0.2, 1) forwards 1.0s;
+}
+
+.scroll-container td:nth-child(3) .textcard {
+  animation: slowEntrance var(--anim-duration) cubic-bezier(0.2, 0.8, 0.2, 1) forwards 1.8s;
+}
+
+.scroll-container td:nth-child(4) .textcard {
+  animation: slowEntrance var(--anim-duration) cubic-bezier(0.2, 0.8, 0.2, 1) forwards 2.6s;
+}
+
+.scroll-container td:nth-child(5) .textcard {
+  animation: slowEntrance var(--anim-duration) cubic-bezier(0.2, 0.8, 0.2, 1) forwards 3.4s;
+}
+
+.scroll-container td:nth-child(6) .textcard {
+  animation: slowEntrance var(--anim-duration) cubic-bezier(0.2, 0.8, 0.2, 1) forwards 4.2s;
+}
+
+.scroll-container td:nth-child(7) .textcard {
+  animation: slowEntrance var(--anim-duration) cubic-bezier(0.2, 0.8, 0.2, 1) forwards 5.0s;
+}
+
+.scroll-container td:nth-child(8) .textcard {
+  animation: slowEntrance var(--anim-duration) cubic-bezier(0.2, 0.8, 0.2, 1) forwards 5.8s;
+}
+
+.scroll-container td:nth-child(9) .textcard {
+  animation: slowEntrance var(--anim-duration) cubic-bezier(0.2, 0.8, 0.2, 1) forwards 6.6s;
+}
+
+/* === Footer === */
+#footer {
+  padding: 50px 0;
+  border-top: 1px solid var(--border-dim);
+  margin-top: auto;
+  opacity: 0;
+  animation: fadeReveal 2s ease-out forwards 1s;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.social {
+  display: flex;
+  gap: 30px;
+}
+
+.social img {
+  width: 22px;
+  opacity: 0.5;
+  filter: invert(1);
+  transition: 0.3s;
+}
+
+.social a:hover img {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+@keyframes fadeReveal {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding-top: 30px;
+  }
+
+  .scroll-container table {
+    display: flex;
+  }
+
+  .scroll-container tr {
+    display: flex;
+    gap: 15px;
+    padding: 0 20px;
+  }
+
+  .scroll-container td {
+    display: block;
+  }
+}
