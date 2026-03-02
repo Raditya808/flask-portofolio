@@ -25,7 +25,7 @@ def hubungi():
 <body>
 
     <div class="nav-container">
-      <a href="{url_for('afterlog')}">Home</a>
+      <button><a href="{url_for('afterlog')}">Home</a></button>
        <!-- ke rute main.py -->
   </div>
 

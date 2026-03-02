@@ -33,101 +33,424 @@ def index():
         <title>WELCOME SAARRR</title>
         <link rel="icon" href="{url_for('static', filename='Tachyon.jpg')}">
         <style>
-            * {{
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }}
+           /* ===================================
+   90s PROFESSIONAL PORTFOLIO THEME
+   Clean · Classic · Timeless
+   =================================== */
 
-            body {{
-                font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                background: #0d0d0d;
-                color: #f5f5f5;
-                min-height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 20px; /* Jarak aman untuk layar kecil */
-            }}
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
 
-            .form_user {{
-                width: 100%;
-                max-width: 400px; /* Sedikit lebih lebar untuk desktop */
-                text-align: center;
-                animation: fadeIn 0.6s ease-out;
-            }}
+:root {{
+  --navy:    #1a2744;
+  --navy2:   #243356;
+  --slate:   #4a5568;
+  --cream:   #f5f0e8;
+  --cream2:  #ede8de;
+  --gold:    #b8972a;
+  --gold2:   #d4af37;
+  --red:     #8b1a1a;
+  --white:   #ffffff;
+  --border:  #a09070;
+  --shadow:  rgba(26,39,68,0.18);
+  --text:    #1a1a2e;
+  --muted:   #5a5a6a;
+}}
 
-            h1 {{
-                font-size: clamp(1.5rem, 8vw, 2.5rem); /* Ukuran font adaptif */
-                font-weight: 300;
-                letter-spacing: 0.1em;
-                margin-bottom: 2rem;
-            }}
+*, *::before, *::after {{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}}
 
-            form {{
-                display: flex;
-                flex-direction: column;
-                gap: 15px; /* Jarak antar input */
-            }}
+body {{
+  background-color: var(--cream);
+  background-image:
+    linear-gradient(rgba(180,165,140,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180,165,140,0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--text);
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  animation: pageFade 0.6s ease both;
+}}
 
-            input[type="text"] {{
-                width: 100%;
-                padding: 16px;
-                background: #1a1a1a;
-                border: 1px solid #333;
-                color: #f5f5f5;
-                font-size: 1rem;
-                border-radius: 4px; /* Sedikit lengkungan agar modern */
-                transition: all 0.3s;
-                -webkit-appearance: none; /* Hilangkan shadow default iOS */
-            }}
+@keyframes pageFade {{
+  from {{ opacity: 0; }}
+  to   {{ opacity: 1; }}
+}}
 
-            input[type="text"]:focus {{
-                outline: none;
-                border-color: #f5f5f5;
-                background: #252525;
-            }}
+::-webkit-scrollbar {{ width: 8px; }}
+::-webkit-scrollbar-track {{ background: var(--cream2); }}
+::-webkit-scrollbar-thumb {{ background: var(--navy); }}
 
-            input[type="submit"] {{
-                width: 100%;
-                padding: 16px;
-                background: #f5f5f5;
-                border: 1px solid #f5f5f5;
-                color: #0d0d0d;
-                font-size: 0.875rem;
-                font-weight: 700;
-                letter-spacing: 0.2em;
-                text-transform: uppercase;
-                cursor: pointer;
-                transition: all 0.3s;
-                border-radius: 4px;
-            }}
+h1 {{
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 2px;
+  text-align: center;
+  border-bottom: 3px double var(--gold);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  animation: slideDown 0.7s cubic-bezier(0.22,1,0.36,1) both;
+}}
 
-            input[type="submit"]:hover {{
-                background: transparent;
-                color: #f5f5f5;
-            }}
+h2 {{
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 1px;
+  border-left: 4px solid var(--gold);
+  padding-left: 12px;
+  margin: 1.5rem 0 0.8rem;
+  animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.1s;
+}}
 
-            @keyframes fadeIn {{
-                from {{ opacity: 0; transform: translateY(10px); }}
-                to {{ opacity: 1; transform: translateY(0); }}
-            }}
+h4 {{
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.78rem;
+  color: var(--navy);
+  text-align: center;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}}
 
-            /* Optimasi khusus HP layar sangat kecil */
-            @media (max-width: 380px) {{
-                h1 {{ font-size: 1.2rem; }}
-                input[type="submit"] {{ letter-spacing: 0.1em; }}
-            }}
+p {{
+  font-size: 0.95rem;
+  color: var(--slate);
+  line-height: 1.8;
+  margin-bottom: 0.6rem;
+}}
+
+a {{
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: inherit;
+  transition: color 0.2s, opacity 0.2s;
+}}
+a:hover {{
+  color: var(--gold);
+  opacity: 0.85;
+}}
+
+@keyframes slideDown {{
+  from {{ opacity: 0; transform: translateY(-22px); }}
+  to   {{ opacity: 1; transform: translateY(0); }}
+}}
+@keyframes slideRight {{
+  from {{ opacity: 0; transform: translateX(-18px); }}
+  to   {{ opacity: 1; transform: translateX(0); }}
+}}
+@keyframes slideUp {{
+  from {{ opacity: 0; transform: translateY(24px); }}
+  to   {{ opacity: 1; transform: translateY(0); }}
+}}
+@keyframes fadeIn {{
+  from {{ opacity: 0; }}
+  to   {{ opacity: 1; }}
+}}
+@keyframes cardPop {{
+  from {{ opacity: 0; transform: scale(0.93) translateY(10px); }}
+  to   {{ opacity: 1; transform: scale(1) translateY(0); }}
+}}
+
+.form_user {{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 1rem 1rem;
+  animation: slideDown 0.7s ease both;
+}}
+
+.form-input {{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem;
+  animation: slideUp 0.7s ease both;
+  animation-delay: 0.15s;
+}}
+
+input[type="text"] {{
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 1rem;
+  background: var(--white);
+  color: var(--text);
+  border: 2px solid var(--navy);
+  border-top-color: var(--border);
+  border-left-color: var(--border);
+  padding: 10px 16px;
+  outline: none;
+  width: 300px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.08);
+}}
+input[type="text"]:focus {{
+  border-color: var(--gold);
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.08), 0 0 0 3px rgba(184,151,42,0.15);
+}}
+input[type="text"]::placeholder {{
+  color: var(--muted);
+  font-style: italic;
+}}
+
+input[type="submit"],
+button {{
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--navy);
+  color: var(--cream);
+  border: 2px solid var(--navy);
+  padding: 10px 28px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+  box-shadow: 3px 3px 0 var(--gold);
+  position: relative;
+  overflow: hidden;
+}}
+input[type="submit"]::after,
+button::after {{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.4s;
+}}
+input[type="submit"]:hover::after,
+button:hover::after {{
+  transform: translateX(100%);
+}}
+input[type="submit"]:hover,
+button:hover {{
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--navy);
+  box-shadow: 3px 3px 0 var(--navy);
+  transform: translate(-1px, -1px);
+}}
+input[type="submit"]:active,
+button:active {{
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--navy);
+}}
+
+button a {{
+  color: inherit;
+  text-decoration: none;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}}
+
+.content-wrapper {{
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+  animation: fadeIn 0.5s ease both;
+}}
+
+.content-wrapper > button {{
+  margin: 0 10px 10px 0;
+}}
+
+.header-container {{
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 5px solid var(--navy);
+  padding: 2.5rem;
+  margin: 2rem 0;
+  box-shadow: 4px 4px 0 var(--cream2), 5px 5px 0 var(--border);
+  animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.1s;
+  position: relative;
+}}
+.header-container::after {{
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--navy), var(--gold));
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}}
+
+.header-container img {{
+  border: 3px solid var(--navy);
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  display: block;
+  margin: 1.2rem auto;
+  transition: outline-color 0.3s, transform 0.3s;
+}}
+.header-container img:hover {{
+  outline-color: var(--red);
+  transform: scale(1.02);
+}}
+
+.content-text section {{
+  border-left: 3px solid var(--cream2);
+  padding-left: 14px;
+  margin: 10px 0;
+  transition: border-color 0.3s;
+}}
+.content-text section:hover {{
+  border-left-color: var(--gold);
+}}
+
+.project-container {{
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 5px solid var(--gold);
+  padding: 2.5rem;
+  margin: 2rem 0;
+  box-shadow: 4px 4px 0 var(--cream2), 5px 5px 0 var(--border);
+  animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: 0.2s;
+}}
+
+.scroll-container {{
+  overflow-x: auto;
+  padding-bottom: 8px;
+}}
+
+table {{
+  border-collapse: separate;
+  border-spacing: 10px;
+}}
+
+.textcard {{
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-bottom: 3px solid var(--navy);
+  padding: 14px 10px;
+  text-align: center;
+  width: 95px;
+  cursor: default;
+  transition: all 0.22s cubic-bezier(0.22,1,0.36,1);
+  animation: cardPop 0.5s ease both;
+}}
+.textcard:hover {{
+  background: var(--navy);
+  border-color: var(--navy);
+  border-bottom-color: var(--gold);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px var(--shadow);
+}}
+.textcard:hover h4 {{
+  color: var(--cream);
+}}
+.textcard img {{
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.22s;
+}}
+.textcard:hover img {{
+  transform: scale(1.12);
+}}
+
+td:nth-child(1) .textcard {{ animation-delay: 0.05s; }}
+td:nth-child(2) .textcard {{ animation-delay: 0.10s; }}
+td:nth-child(3) .textcard {{ animation-delay: 0.15s; }}
+td:nth-child(4) .textcard {{ animation-delay: 0.20s; }}
+td:nth-child(5) .textcard {{ animation-delay: 0.25s; }}
+td:nth-child(6) .textcard {{ animation-delay: 0.30s; }}
+td:nth-child(7) .textcard {{ animation-delay: 0.35s; }}
+td:nth-child(8) .textcard {{ animation-delay: 0.40s; }}
+td:nth-child(9) .textcard {{ animation-delay: 0.45s; }}
+
+footer {{
+  background: var(--navy);
+  border-top: 4px double var(--gold);
+  padding: 2.5rem 2rem;
+  margin-top: 2.5rem;
+  animation: fadeIn 0.8s ease both;
+  animation-delay: 0.3s;
+}}
+
+.footer-content {{
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}}
+
+.footer-content > a {{
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.88rem;
+  color: var(--gold2);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}}
+.footer-content > a:hover {{
+  color: var(--cream);
+}}
+
+.social {{
+  display: flex;
+  gap: 18px;
+}}
+.social a img {{
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.2s;
+}}
+.social a:hover img {{
+  opacity: 1;
+  transform: translateY(-3px);
+}}
+
+.copyright p {{
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.75rem;
+  color: rgba(245,240,232,0.45);
+  text-align: center;
+  letter-spacing: 1px;
+}}
+
+@media (max-width: 600px) {{
+  h1 {{ font-size: 1.7rem; }}
+  h2 {{ font-size: 1.1rem; }}
+  .content-wrapper {{ padding: 1rem 1.2rem; }}
+  .header-container,
+  .project-container {{ padding: 1.5rem 1rem; }}
+  input[type="text"] {{ width: 240px; }}
+  .textcard {{ width: 78px; padding: 10px 6px; }}
+  .textcard img {{ width: 34px; height: 34px; }}
+}}
         </style>
     </head>
     <body>
-        <div class="form_user">
-            <h1>WELCOME</h1>
-            <form method="POST">
-                <input type="text" name="nama" placeholder="Siapa Namamu Tuan?" required>
-                <input type="submit" value="Masuk">
-            </form>
-        </div>
+            <div class="form_user">
+                <h1>WELCOME</h1>
+            </div>
+                <div class="form-input">
+                    <form method="POST">
+                        <input type="text" name="nama" placeholder="Siapa Namamu Tuan?" required>
+                        <input type="submit" value="Masuk">
+                    </form>
+            </div>
     </body>
     </html>
     """
@@ -148,17 +471,17 @@ def afterlog():
        
         
         <div class="content-wrapper">
-            <br>
-            <!-- button untuk ke rute Blurprint('second') di fitur_project dan second adalah function nya-->
-            <button><a href="{url_for('second.prjct')}">View Projects</a></button>
             
-            <!-- button untuk ke rute Blueprint('kontak') di contactus.py hubungi adalah function nya-->
-            <button><a href="{url_for('kontak.hubungi')}">Lets Connect</a></button>
+            <div class="nav-buttons">
+                <!-- button untuk ke rute Blurprint('second') di fitur_project dan second adalah function nya-->
+                <button><a href="{url_for('second.prjct')}">View Projects</a></button>
+            
+                <!-- button untuk ke rute Blueprint('kontak') di contactus.py hubungi adalah function nya-->
+                <button><a href="{url_for('kontak.hubungi')}">Lets Connect</a></button>
 
-            <!-- button untuk ke ruute index '/' -->
-            <button><a href="{url_for("index")}">Go Back To Input?</a></button>
-            
-        </div>
+                <!-- button untuk ke ruute index '/' -->
+                <button><a href="{url_for("index")}">Go Back To Input?</a></button>
+            </div>
 
 
             <section class="header-container">
@@ -293,7 +616,7 @@ def afterlog():
                     </a>
                 </div>
                 <div class="copyright">
-                    <p>Copyright © 2025 Raditya. All rights reserved</p>
+                    <p>Copyright &copy; 2025 Raditya. All rights reserved</p>
                 </div>
             </div>
         </footer>
