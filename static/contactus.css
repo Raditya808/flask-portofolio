@@ -27,6 +27,10 @@
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: var(--cream);
   background-image:
@@ -37,7 +41,8 @@ body {
   font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 1rem;
   line-height: 1.7;
-  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   animation: pageFade 0.6s ease both;
@@ -72,6 +77,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
   animation: slideDown 0.6s cubic-bezier(0.22,1,0.36,1) both;
 }
 
@@ -184,13 +190,16 @@ a:hover {
 /* === SOCIAL CARDS SECTION === */
 .project-container {
   background: var(--white);
-  border: 1px solid var(--border);
   border-top: 5px solid var(--gold);
   padding: 2.5rem;
-  margin: 2rem auto;
-  box-shadow: 4px 4px 0 var(--cream2), 5px 5px 0 var(--border);
+  /* KEY FIX: margin 0 + width 100% = tidak ada celah kiri/kanan */
+  margin: 2rem 0 0 0;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: none;
   animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
   animation-delay: 0.15s;
+  flex: 1;
 }
 
 .scroll-container {
@@ -284,7 +293,8 @@ td:nth-child(3) .textcard { animation-delay: 0.3s; }
   background: var(--navy);
   border-top: 4px double var(--gold);
   padding: 2.5rem 2rem;
-  margin-top: auto;
+  flex-shrink: 0;
+  width: 100%;
   animation: fadeIn 0.8s ease both;
   animation-delay: 0.3s;
 }
@@ -338,7 +348,8 @@ td:nth-child(3) .textcard { animation-delay: 0.3s; }
   .nav-container { padding: 12px 1rem; }
   .header-container { padding: 0 1rem; margin: 1.5rem auto 0; }
   .header-container .content-text h2 { font-size: 1.8rem; }
-  .project-container { padding: 1.5rem 1rem; margin: 1.5rem 1rem; }
+  /* margin 0 di semua breakpoint = tidak ada celah */
+  .project-container { padding: 1.5rem 1rem; margin: 1.5rem 0 0 0; }
   .container { padding: 0 1rem; }
   .textcard { width: 110px; }
   .textcard img { width: 44px; height: 44px; }
@@ -346,7 +357,7 @@ td:nth-child(3) .textcard { animation-delay: 0.3s; }
 
 @media (max-width: 480px) {
   .header-container .content-text h2 { font-size: 1.4rem; letter-spacing: 1px; }
-  .project-container { padding: 1.2rem 0.8rem; margin: 1rem 0.8rem; }
+  .project-container { padding: 1.2rem 0.8rem; margin: 1rem 0 0 0; }
   .textcard { width: 90px; padding: 16px 10px !important; }
   .textcard img { width: 36px; height: 36px; }
   .textcard h4 { font-size: 0.65rem; }

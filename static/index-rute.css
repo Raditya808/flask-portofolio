@@ -27,6 +27,10 @@
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: var(--cream);
   background-image:
@@ -37,6 +41,11 @@ body {
   font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 1rem;
   line-height: 1.7;
+  /* KEY FIX: flex column + min-height 100dvh = tidak ada celah bawah */
+  min-height: 100dvh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   animation: pageFade 0.6s ease both;
 }
 
@@ -223,14 +232,17 @@ button a {
 }
 
 /* === LAYOUT WRAPPER === */
+/* KEY FIX: flex: 1 supaya konten utama mengisi ruang dan footer ke bawah */
 .content-wrapper {
   max-width: 680px;
   margin: 0 auto;
   padding: 2rem 2.5rem;
   animation: fadeIn 0.5s ease both;
+  flex: 1;
+  width: 100%;
 }
 
-/* === NAV BUTTONS — tengah di semua ukuran layar === */
+/* === NAV BUTTONS === */
 .nav-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -374,24 +386,21 @@ td:nth-child(7) .textcard { animation-delay: 0.35s; }
 td:nth-child(8) .textcard { animation-delay: 0.40s; }
 td:nth-child(9) .textcard { animation-delay: 0.45s; }
 
-/* === FOOTER — sama dengan contactus, social icon lebih besar === */
-footer,
+/* === FOOTER === */
 footer,
 #footer {
   background: var(--navy);
   border-top: 4px double var(--gold);
   padding: 3rem 0;
-  margin-top: 2.5rem;
+  /* KEY FIX: flex-shrink: 0 + width 100% supaya footer tidak kena gap */
+  flex-shrink: 0;
   width: 100%;
   display: block;
   animation: fadeIn 0.8s ease both;
   animation-delay: 0.3s;
 }
 
-footer .footer-content,
-.footer-content,
-#footer .footer-content,
-#footer .container {
+.footer-content {
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
@@ -414,7 +423,6 @@ footer .footer-content,
   color: var(--cream);
 }
 
-/* Social icons — lebih besar, sama dengan contactus */
 .social {
   display: flex;
   gap: 24px;
@@ -427,7 +435,6 @@ footer .footer-content,
   width: 48px;
   height: 48px;
   border: 2px solid rgba(255,255,255,0.15);
-  border-radius: 0;
   transition: border-color 0.2s, background 0.2s, transform 0.2s;
   text-decoration: none;
 }
